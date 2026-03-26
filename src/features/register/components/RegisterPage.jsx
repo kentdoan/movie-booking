@@ -22,13 +22,14 @@ export const RegisterPage = () => {
     } = useForm({
         mode: 'onChange', // onChange: Kiểm tra lỗi ngay khi người dùng nhập dữ liệu vào form
         resolver: zodResolver(registerFormSchema), // Sử dụng zod để validate form
+        defaultValues: {
+            maNhom: 'GP01',
+        },
     })
 
     //  const createUser = useMutation({
     //     mutationFn: (payload) => userService.dangKy(payload),
     // })
-
-    console.log('errors', errors)
 
     const navigate = useNavigate()
 

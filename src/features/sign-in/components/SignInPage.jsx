@@ -3,7 +3,7 @@ import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { PUBLIC_PATH } from '@/constant'
 import { useMutationSignIn } from '../hooks'
 
@@ -14,6 +14,8 @@ const signInSchema = z.object({
 
 export const SignInPage = () => {
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || PUBLIC_PATH.HOME
 
     const {
         handleSubmit,
@@ -31,7 +33,11 @@ export const SignInPage = () => {
             <form
                 className="max-w-125 mx-auto space-y-5"
                 onSubmit={handleSubmit(async (data) => {
-                    signInMutation.mutate(data)
+                    signInMutation.mutate(data, {
+                        onSuccess() {
+                            navigate(from, { replace: true })
+                        },
+                    })
                 })}
             >
                 <h2 className="text-2xl font-semibold">Đăng nhập</h2>
