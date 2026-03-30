@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { userService } from '@/services'
+import { userService } from '../../../services'
 
 export const useQueryProfile = () => {
     return useQuery({

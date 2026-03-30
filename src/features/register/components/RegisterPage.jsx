@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { registerFormSchema } from '../schema/registerFormSchema'
 // import { userService } from '../services'
 import { useNavigate } from 'react-router'
-import { PUBLIC_PATH } from '@/constant'
+import { PUBLIC_PATH } from '../../../constant'
 import { useMutationUser } from '../hooks'
 // import { toast } from 'sonner'
 

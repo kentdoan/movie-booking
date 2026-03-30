@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { Button, Card, Empty, Skeleton, Tabs } from 'antd'
 import { Link } from 'react-router'
-import { PUBLIC_PATH } from '@/constant'
+import { PUBLIC_PATH } from '../../../constant'
 
 const normalizeCinemaSystems = (systems = []) => {
     return systems.map((system) => {

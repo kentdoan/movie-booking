@@ -1,7 +1,7 @@
 import React from 'react'
 import { Empty } from 'antd'
-import { useQueryHomeData } from '@/features/home/hooks/useQueryHomeData'
-import { CinemaShowtimesSection } from '@/features/home/components/CinemaShowtimesSection'
+import { useQueryHomeData } from '../../home/hooks/useQueryHomeData'
+import { CinemaShowtimesSection } from '../../home/components/CinemaShowtimesSection'
 
 export const CinemaPage = () => {
     const { data, isLoading, isError } = useQueryHomeData()

@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router'
-import { PUBLIC_PATH } from '@/constant'
-import { authSession } from '@/shared/auth'
+import { PUBLIC_PATH } from '../../constant'
+import { authSession } from '../auth'
 
 export const GuestOnlyRoute = () => {
     if (authSession.isAuthenticated()) {

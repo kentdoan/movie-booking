@@ -1,4 +1,4 @@
-import { AUTH_STORAGE_KEYS, USER_ROLE } from '@/constant'
+import { AUTH_STORAGE_KEYS, USER_ROLE } from '../../constant'
 
 const parseJSON = (value) => {
     if (!value) {

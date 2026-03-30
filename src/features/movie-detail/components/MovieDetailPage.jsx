@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router'
 import { Button, Card, Skeleton, Tabs, Empty } from 'antd'
 import { StarFilled, CalendarOutlined, ThunderboltFilled } from '@ant-design/icons'
-import { PUBLIC_PATH } from '@/constant'
+import { PUBLIC_PATH } from '../../../constant'
 import { useQueryMovieDetail } from '../hooks/useQueryMovieDetail'
 
 export const MovieDetailPage = () => {

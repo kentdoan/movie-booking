@@ -2,8 +2,8 @@ import React from 'react'
 import { Button, Image, Popconfirm, Space, Table, Tag, message } from 'antd'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router'
-import { ADMIN_PATH } from '@/constant'
-import { movieService } from '@/services'
+import { ADMIN_PATH } from '../../../../constant'
+import { movieService } from '../../../../services'
 
 export const AdminFilmsPage = () => {
     const navigate = useNavigate()

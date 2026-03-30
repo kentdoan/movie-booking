@@ -1,4 +1,4 @@
-import { userService as baseUserService } from '@/services'
+import { userService as baseUserService } from '../../../services'
 
 export const userService = {
     dangKy: (payload) => baseUserService.signUp(payload),

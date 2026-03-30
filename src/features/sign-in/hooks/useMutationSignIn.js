@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { userService } from '../service'
 import { toast } from 'sonner'
-import { authSession } from '@/shared/auth'
+import { authSession } from '../../../shared/auth'
 
 export const useMutationSignIn = () => {
   return useMutation({

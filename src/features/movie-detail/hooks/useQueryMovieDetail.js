@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { movieService } from '@/services'
+import { movieService } from '../../../services'
 
 export const useQueryMovieDetail = (maPhim) => {
     return useQuery({

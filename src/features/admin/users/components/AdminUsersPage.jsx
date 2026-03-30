@@ -11,8 +11,8 @@ import {
     message,
 } from 'antd'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { APP_CONFIG } from '@/config'
-import { userService } from '@/services'
+import { APP_CONFIG } from '../../../../config'
+import { userService } from '../../../../services'
 
 export const AdminUsersPage = () => {
     const [search, setSearch] = useState('')

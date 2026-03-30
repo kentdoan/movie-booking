@@ -12,9 +12,9 @@ import {
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { UploadOutlined } from '@ant-design/icons'
 import { useNavigate, useParams } from 'react-router'
-import { ADMIN_PATH } from '@/constant'
-import { APP_CONFIG } from '@/config'
-import { movieService } from '@/services'
+import { ADMIN_PATH } from '../../../../constant'
+import { APP_CONFIG } from '../../../../config'
+import { movieService } from '../../../../services'
 
 const toInputDate = (value) => {
     if (!value) {

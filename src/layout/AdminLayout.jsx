@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router'
-import { ADMIN_PATH } from '@/constant'
+import { ADMIN_PATH } from '../constant'
 
 export const AdminLayout = () => {
 	return (

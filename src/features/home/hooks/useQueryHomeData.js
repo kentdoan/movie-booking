@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { cinemaService, movieService } from '@/services'
+import { cinemaService, movieService } from '../../../services'
 
 export const useQueryHomeData = () => {
     return useQuery({

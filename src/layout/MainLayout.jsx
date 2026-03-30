@@ -1,10 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router'
-import { Footer, Header } from '@/shared/components'
-
-// import { Footer } from '@/shared/components/Footer'
-// import { Header } from '@/shared/components/Header'
-// import { Header } from '../shared/components/Header'
+import { Footer, Header } from '../shared/components'
 
 export const MainLayout = () => {
     return (

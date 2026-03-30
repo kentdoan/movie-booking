@@ -1,11 +1,8 @@
 import React from 'react'
 import { Link, NavLink, useNavigate } from 'react-router'
-import { ADMIN_PATH, PRIVATE_PATH, PUBLIC_PATH } from '@/constant'
+import { ADMIN_PATH, PRIVATE_PATH, PUBLIC_PATH } from '../../constant'
 import { Button } from 'antd'
-import { authSession } from '@/shared/auth'
-
-// import { PUBLIC_PATH } from '../../constant/path'
-// import { APP_CONFIG } from '../../config/appConfig'
+import { authSession } from '../auth'
 
 export const Header = () => {
     const navigate = useNavigate()

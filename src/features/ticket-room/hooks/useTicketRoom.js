@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { bookingService } from '@/services'
+import { bookingService } from '../../../services'
 
 export const useQueryTicketRoom = (maLichChieu) => {
     return useQuery({

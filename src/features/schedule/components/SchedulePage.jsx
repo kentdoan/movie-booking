@@ -1,7 +1,7 @@
 import React from 'react'
 import { Empty } from 'antd'
-import { useQueryHomeData } from '@/features/home/hooks/useQueryHomeData'
-import { MovieGridSection } from '@/features/home/components/MovieGridSection'
+import { useQueryHomeData } from '../../home/hooks/useQueryHomeData'
+import { MovieGridSection } from '../../home/components/MovieGridSection'
 
 export const SchedulePage = () => {
     const { data, isLoading, isError } = useQueryHomeData()

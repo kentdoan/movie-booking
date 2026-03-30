@@ -1,5 +1,5 @@
-import { APP_CONFIG } from '@/config'
-import { api } from '@/lib'
+import { APP_CONFIG } from '../config'
+import { api } from '../lib'
 
 export const userService = {
     signIn(payload) {

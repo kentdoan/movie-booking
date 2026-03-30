@@ -1,5 +1,5 @@
 import axios from "axios";
-import { authSession } from '@/shared/auth'
+import { authSession } from '../shared/auth'
 
 const AUTH_REQUIRED_PATTERNS = [
     '/QuanLyDatVe/DatVe',

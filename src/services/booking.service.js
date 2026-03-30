@@ -1,4 +1,4 @@
-import { api } from '@/lib'
+import { api } from '../lib'
 
 export const bookingService = {
     getTicketRoom(maLichChieu) {

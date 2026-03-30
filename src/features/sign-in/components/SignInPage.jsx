@@ -4,7 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
 import { useLocation, useNavigate } from 'react-router'
-import { PUBLIC_PATH } from '@/constant'
+import { PUBLIC_PATH } from '../../../constant'
 import { useMutationSignIn } from '../hooks'
 
 const signInSchema = z.object({

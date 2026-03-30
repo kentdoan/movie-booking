@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Card, Empty, Skeleton } from 'antd'
 import { Link } from 'react-router'
-import { PUBLIC_PATH } from '@/constant'
+import { PUBLIC_PATH } from '../../../constant'
 
 export const MovieGridSection = ({ movies = [], isLoading = false, title = 'Phim nổi bật' }) => {
     return (
