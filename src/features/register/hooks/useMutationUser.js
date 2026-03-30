@@ -1,31 +1,26 @@
 import { useMutation } from '@tanstack/react-query'
+import { toast } from 'sonner'
 import { userService } from '../services'
-import {toast} from 'sonner'
 
-// custom hook
 export const useMutationUser = () => {
-    // create user
     const createUser = useMutation({
         mutationFn: (payload) => userService.dangKy(payload),
-        onSuccess(){
+        onSuccess() {
             toast.success('Đăng ký thành công')
         },
-        onError(){
-            toast.error('Đăng ký thất bại')
-        }
+        onError(error) {
+            const message = error?.response?.data?.content || 'Đăng ký thất bại'
+            toast.error(message)
+        },
     })
 
-    // update User
-     const updateUser = useMutation({
-        mutationFn: (payload) => userService.dangKy(payload),
+    const updateUser = useMutation({
+        mutationFn: (payload) => userService.capNhatNguoiDung(payload),
     })
-    
-    
-    // delete User
+
     const deleteUser = useMutation({
-       mutationFn: (payload) => userService.dangKy(payload),
-   })
-
+        mutationFn: (taiKhoan) => userService.xoaNguoiDung(taiKhoan),
+    })
 
     return { createUser, updateUser, deleteUser }
 }
