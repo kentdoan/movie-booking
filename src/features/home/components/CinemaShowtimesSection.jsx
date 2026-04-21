@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Button, Card, Empty, Skeleton, Tabs } from 'antd'
+import { Button, Card, Empty, Grid, Skeleton } from 'antd'
 import { Link } from 'react-router'
 import { PUBLIC_PATH } from '../../../constant'
 
@@ -31,6 +31,7 @@ export const CinemaShowtimesSection = ({
     title = 'Lịch chiếu theo hệ thống rạp',
 }) => {
     const [selectedCinemaSystem, setSelectedCinemaSystem] = useState('')
+    const screens = Grid.useBreakpoint()
 
     const normalizedSystems = useMemo(
         () => normalizeCinemaSystems(cinemaSystems),
@@ -45,48 +46,65 @@ export const CinemaShowtimesSection = ({
     }, [normalizedSystems, selectedCinemaSystem])
 
     const selectedSystemShowtimes = activeSystem?.cumRapChieu || []
+    const visibleMovieCount = screens.md ? 4 : 2
+    const visibleShowtimeCount = screens.sm ? 6 : 4
 
     return (
         <div className="space-y-4">
-            {title ? <h2 className="text-3xl font-bold text-red-600">{title}</h2> : null}
+            {title ? <h2 className="text-xl font-bold text-red-600 sm:text-3xl">{title}</h2> : null}
             {isLoading ? (
                 <Skeleton active />
             ) : normalizedSystems.length > 0 ? (
-                <div className="grid gap-4 rounded-lg border p-4 lg:grid-cols-[260px_1fr]">
-                    <Tabs
-                        tabPosition="left"
-                        activeKey={activeSystem?.maHeThongRap}
-                        onChange={setSelectedCinemaSystem}
-                        items={normalizedSystems.map((system) => ({
-                            key: system.maHeThongRap,
-                            label: (
-                                <div className="flex items-center gap-2">
-                                    <img
-                                        src={system.logo}
-                                        alt={system.tenHeThongRap}
-                                        className="h-7 w-7 object-contain"
-                                    />
-                                    <span className="text-xs font-medium">{system.tenHeThongRap}</span>
-                                </div>
-                            ),
-                        }))}
-                    />
+                <div className="grid gap-3 rounded-lg border p-2 sm:gap-4 sm:p-4 lg:grid-cols-[260px_minmax(0,1fr)]">
+                    <div className="min-w-0">
+                        <div className={screens.lg ? 'space-y-2' : 'cinema-system-scroll no-scrollbar flex gap-2 overflow-x-auto pb-1'}>
+                            {normalizedSystems.map((system) => {
+                                const isActive = activeSystem?.maHeThongRap === system.maHeThongRap
 
-                    <div className="space-y-3">
-                        <h3 className="text-lg font-semibold">{activeSystem?.tenHeThongRap}</h3>
+                                return (
+                                    <button
+                                        key={system.maHeThongRap}
+                                        type="button"
+                                        onClick={() => setSelectedCinemaSystem(system.maHeThongRap)}
+                                        className={`${
+                                            screens.lg
+                                                ? 'flex w-full items-center gap-3 rounded-lg border px-3 py-2 text-left'
+                                                : 'flex shrink-0 items-center gap-2 rounded-full border px-3 py-2 text-left'
+                                        } transition ${
+                                            isActive
+                                                ? 'border-red-500 bg-red-50 text-red-600'
+                                                : 'border-zinc-200 bg-white text-zinc-700 hover:border-red-300'
+                                        }`}
+                                    >
+                                        <img
+                                            src={system.logo}
+                                            alt={system.tenHeThongRap}
+                                            className="h-7 w-7 shrink-0 object-contain"
+                                        />
+                                        <span className={`${screens.lg ? 'truncate text-sm font-medium' : 'max-w-32 truncate text-xs font-medium'}`}>
+                                            {system.tenHeThongRap}
+                                        </span>
+                                    </button>
+                                )
+                            })}
+                        </div>
+                    </div>
+
+                    <div className="min-w-0 space-y-3">
+                        <h3 className="break-words text-base font-semibold sm:text-lg">{activeSystem?.tenHeThongRap}</h3>
                         {selectedSystemShowtimes.length > 0 ? (
                             selectedSystemShowtimes.map((cluster) => (
                                 <Card key={cluster.maCumRap} size="small">
                                     <div className="space-y-2">
-                                        <h4 className="font-semibold">{cluster.tenCumRap}</h4>
-                                        <p className="text-xs text-zinc-500">{cluster.diaChi}</p>
+                                        <h4 className="break-words text-sm font-semibold sm:text-base">{cluster.tenCumRap}</h4>
+                                        <p className="break-words text-xs text-zinc-500">{cluster.diaChi}</p>
                                         <div className="space-y-2">
-                                            {cluster.danhSachPhim?.slice(0, 4).map((movie) => (
+                                            {cluster.danhSachPhim?.slice(0, visibleMovieCount).map((movie) => (
                                                 <div key={movie.maPhim} className="rounded border p-2">
-                                                    <p className="mb-1 text-sm font-medium">{movie.tenPhim}</p>
+                                                    <p className="mb-1 line-clamp-2 text-sm font-medium">{movie.tenPhim}</p>
                                                     <div className="flex flex-wrap gap-2">
                                                         {movie.lstLichChieuTheoPhim
-                                                            ?.slice(0, 6)
+                                                            ?.slice(0, visibleShowtimeCount)
                                                             .map((showtime) => (
                                                                 <Link
                                                                     key={showtime.maLichChieu}
@@ -95,7 +113,7 @@ export const CinemaShowtimesSection = ({
                                                                         showtime.maLichChieu,
                                                                     )}
                                                                 >
-                                                                    <Button size="small" type="primary">
+                                                                    <Button size="small" type="primary" className="min-w-16">
                                                                         {showtime.ngayChieuGioChieu?.slice(11, 16)}
                                                                     </Button>
                                                                 </Link>

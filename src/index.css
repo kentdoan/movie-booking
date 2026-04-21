@@ -1,1 +1,52 @@
 @import 'tailwindcss';
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.cinema-system-scroll {
+	scroll-snap-type: x mandatory;
+}
+
+.cinema-system-scroll > button {
+	scroll-snap-align: start;
+}
+
+@media (max-width: 1023px) {
+	.movie-detail-tabs .ant-tabs-nav-wrap {
+		overflow-x: auto;
+	}
+
+	.movie-detail-tabs .ant-tabs-nav-list {
+		flex-wrap: nowrap;
+	}
+
+	.movie-detail-tabs .ant-tabs-tab {
+		padding-inline: 10px;
+	}
+}
+
+@media (max-width: 425px) {
+	.ant-card .ant-card-meta-title,
+	.ant-card .ant-card-meta-description {
+		overflow-wrap: anywhere;
+	}
+
+	.home-banner .slick-dots {
+		bottom: 6px;
+	}
+
+	.home-banner .slick-dots li {
+		margin-inline: 2px;
+	}
+}

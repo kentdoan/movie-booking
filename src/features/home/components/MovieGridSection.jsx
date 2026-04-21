@@ -5,16 +5,16 @@ import { PUBLIC_PATH } from '../../../constant'
 
 export const MovieGridSection = ({ movies = [], isLoading = false, title = 'Phim nổi bật' }) => {
     return (
-        <div className="space-y-4">
-            {title ? <h2 className="text-3xl font-bold my-4 text-red-600">{title}</h2> : null}
+        <div className="space-y-3 sm:space-y-4">
+            {title ? <h2 className="my-2 text-xl font-bold text-red-600 sm:my-4 sm:text-3xl">{title}</h2> : null}
             {isLoading ? (
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-1 gap-3 min-[540px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {Array.from({ length: 4 }).map((_, i) => (
                         <Skeleton key={i} active paragraph={{ rows: 3 }} />
                     ))}
                 </div>
             ) : movies.length > 0 ? (
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-1 gap-3 min-[540px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {movies.map((movie) => (
                         <Card
                             key={movie.maPhim}
@@ -23,19 +23,24 @@ export const MovieGridSection = ({ movies = [], isLoading = false, title = 'Phim
                                 <img
                                     alt={movie.tenPhim}
                                     src={movie.hinhAnh}
-                                    className="h-64 object-cover"
+                                    className="h-52 w-full object-cover sm:h-56 lg:h-60"
                                 />
                             }
-                            className="shadow-md"
+                            className="overflow-hidden rounded-xl shadow-md"
+                            styles={{ body: { padding: '12px' } }}
                         >
                             <Card.Meta
-                                title={movie.tenPhim}
+                                title={
+                                    <h3 className="line-clamp-2 min-h-11 text-base font-semibold leading-5">
+                                        {movie.tenPhim}
+                                    </h3>
+                                }
                                 description={
                                     <div className="space-y-2">
-                                        <p className="text-sm text-zinc-600 line-clamp-2">{movie.moTa}</p>
-                                        <div className="flex gap-2">
+                                        <p className="line-clamp-3 min-h-15 text-sm text-zinc-600">{movie.moTa}</p>
+                                        <div className="grid grid-cols-1 gap-2 min-[480px]:grid-cols-2">
                                             <Link
-                                                className="flex-1"
+                                                className="w-full"
                                                 to={PUBLIC_PATH.MOVIE_DETAIL.replace(':id', movie.maPhim)}
                                             >
                                                 <Button
@@ -48,7 +53,7 @@ export const MovieGridSection = ({ movies = [], isLoading = false, title = 'Phim
                                                 </Button>
                                             </Link>
                                             <Link
-                                                className="flex-1"
+                                                className="w-full"
                                                 to={PUBLIC_PATH.MOVIE_DETAIL.replace(':id', movie.maPhim)}
                                             >
                                                 <Button

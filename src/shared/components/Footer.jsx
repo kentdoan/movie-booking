@@ -2,8 +2,8 @@ import React from 'react'
 
 export const Footer = () => {
     return (
-        <footer className="p-5 bg-black text-white text-center text-lg">
-            <div className="container mx-auto">
+        <footer className="bg-black px-4 py-4 text-center text-sm text-white sm:text-base">
+            <div className="mx-auto w-full max-w-7xl">
                 @{new Date().getFullYear()} Movie - All rights reserved
             </div>
         </footer>

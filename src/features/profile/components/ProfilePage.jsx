@@ -41,7 +41,7 @@ export const ProfilePage = () => {
 
     return (
         <section className="space-y-5">
-            <h1 className="text-3xl font-semibold">Thông tin cá nhân</h1>
+            <h1 className="text-2xl font-semibold sm:text-3xl">Thông tin cá nhân</h1>
 
             <Card loading={isLoading}>
                 <Form layout="vertical" onFinish={handleSubmit((formValues) => {
@@ -105,7 +105,7 @@ export const ProfilePage = () => {
                         </Form.Item>
                     </div>
 
-                    <Button type="primary" htmlType="submit" loading={updateMutation.isPending}>
+                    <Button type="primary" htmlType="submit" loading={updateMutation.isPending} className="w-full sm:w-auto">
                         Cập nhật
                     </Button>
                 </Form>

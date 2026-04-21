@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link, useParams } from 'react-router'
-import { Button, Card, Skeleton, Tabs, Empty } from 'antd'
+import { Button, Card, Empty, Grid, Skeleton, Tabs } from 'antd'
 import { StarFilled, CalendarOutlined, ThunderboltFilled } from '@ant-design/icons'
 import { PUBLIC_PATH } from '../../../constant'
 import { useQueryMovieDetail } from '../hooks/useQueryMovieDetail'
 
 export const MovieDetailPage = () => {
+    const screens = Grid.useBreakpoint()
     const { maPhim, id } = useParams()
     const movieId = maPhim || id
 
@@ -40,7 +41,7 @@ export const MovieDetailPage = () => {
                                                 key={showtime.maLichChieu}
                                                 to={PUBLIC_PATH.TICKET_ROOM.replace(':id', showtime.maLichChieu)}
                                             >
-                                                <Button size="small" type="primary">
+                                                <Button size="small" type="primary" className="min-w-16">
                                                     {showtime.ngayChieuGioChieu?.slice(11, 16)}
                                                 </Button>
                                             </Link>
@@ -63,7 +64,7 @@ export const MovieDetailPage = () => {
             {isLoading ? (
                 <Skeleton active paragraph={{ rows: 4 }} />
             ) : (
-                <div className="grid gap-8 lg:grid-cols-3">
+                <div className="grid gap-5 md:gap-8 lg:grid-cols-3">
                     {/* Poster */}
                     <div className="lg:col-span-1">
                         <img
@@ -75,9 +76,9 @@ export const MovieDetailPage = () => {
                     </div>
 
                     {/* Movie Info */}
-                    <div className="lg:col-span-2 space-y-4">
+                    <div className="space-y-4 lg:col-span-2">
                         <div>
-                            <h1 className="text-4xl font-bold text-red-600 mb-2">{detail?.tenPhim}</h1>
+                            <h1 className="mb-2 text-2xl font-bold text-red-600 sm:text-3xl lg:text-4xl">{detail?.tenPhim}</h1>
                             <div className="flex flex-wrap gap-4 text-sm text-zinc-600 mb-4">
                                 {detail?.sapChieu === true && (
                                     <span className="flex items-center gap-1">
@@ -98,14 +99,14 @@ export const MovieDetailPage = () => {
                         </div>
 
                         <div className="space-y-3 border-y py-4">
-                            <div className="flex items-start gap-4">
-                                <span className="font-semibold w-32">Mô tả:</span>
+                            <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:gap-4">
+                                <span className="w-32 shrink-0 font-semibold">Mô tả:</span>
                                 <p className="text-zinc-700">{detail?.moTa}</p>
                             </div>
 
                             {detail?.danhGia && (
-                                <div className="flex items-center gap-4">
-                                    <span className="font-semibold w-32">Đánh giá:</span>
+                                <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
+                                    <span className="w-32 shrink-0 font-semibold">Đánh giá:</span>
                                     <span className="flex items-center gap-1">
                                         {Array.from({ length: 5 }).map((_, i) => (
                                             <StarFilled
@@ -119,8 +120,8 @@ export const MovieDetailPage = () => {
                             )}
 
                             {detail?.ngayKhoiChieu && (
-                                <div className="flex items-center gap-4">
-                                    <span className="font-semibold w-32">Ngày khởi chiếu:</span>
+                                <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
+                                    <span className="w-32 shrink-0 font-semibold">Ngày khởi chiếu:</span>
                                     <span className="flex items-center gap-2">
                                         <CalendarOutlined />
                                         {new Date(detail.ngayKhoiChieu).toLocaleDateString('vi-VN')}
@@ -140,12 +141,17 @@ export const MovieDetailPage = () => {
 
             {/* Showtimes Tabs */}
             <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-red-600">Lịch chiếu</h2>
+                <h2 className="text-xl font-bold text-red-600 sm:text-2xl">Lịch chiếu</h2>
                 {isLoading ? (
                     <Skeleton active />
                 ) : tabItems.length > 0 ? (
                     <Card className="shadow-md">
-                        <Tabs defaultActiveKey={tabItems[0]?.key} items={tabItems} />
+                        <Tabs
+                            className="movie-detail-tabs"
+                            tabPosition={screens.lg ? 'left' : 'top'}
+                            defaultActiveKey={tabItems[0]?.key}
+                            items={tabItems}
+                        />
                     </Card>
                 ) : (
                     <Empty description="Không có lịch chiếu" />

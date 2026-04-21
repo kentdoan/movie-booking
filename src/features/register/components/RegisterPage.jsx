@@ -34,9 +34,9 @@ export const RegisterPage = () => {
     const navigate = useNavigate()
 
     return (
-        <div className="container mx-auto">
+        <div className="mx-auto w-full">
             <form
-                className="max-w-125 mx-auto space-y-5"
+                className="mx-auto w-full max-w-2xl space-y-4 sm:space-y-5"
                 onSubmit={handleSubmit(async (data) => {
                     // data: giá trị của form
                     // chỉ được thực thi khi form hợp lệ (không có lỗi)
@@ -67,7 +67,8 @@ export const RegisterPage = () => {
                     //toast.success('Đăng ký thành công')
                 })}
             >
-                <h2 className="text-2xl font-semibold">Đăng ký</h2>
+                <h2 className="text-xl font-semibold sm:text-2xl">Đăng ký</h2>
+                <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                     <label htmlFor="">Họ tên</label>
                     <Controller
@@ -158,6 +159,7 @@ export const RegisterPage = () => {
                             return <Input {...field} />
                         }}
                     />
+                </div>
                 </div>
                 <Button
                     className="w-full"

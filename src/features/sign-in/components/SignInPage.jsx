@@ -29,9 +29,9 @@ export const SignInPage = () => {
     const signInMutation = useMutationSignIn()
 
     return (
-        <div className="container mx-auto">
+        <div className="mx-auto w-full">
             <form
-                className="max-w-125 mx-auto space-y-5"
+                className="mx-auto w-full max-w-xl space-y-4 sm:space-y-5"
                 onSubmit={handleSubmit(async (data) => {
                     signInMutation.mutate(data, {
                         onSuccess() {
@@ -40,7 +40,7 @@ export const SignInPage = () => {
                     })
                 })}
             >
-                <h2 className="text-2xl font-semibold">Đăng nhập</h2>
+                <h2 className="text-xl font-semibold sm:text-2xl">Đăng nhập</h2>
                 <div>
                     <label htmlFor="">Tài khoản</label>
                     <Controller
